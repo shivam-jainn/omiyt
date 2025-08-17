@@ -1,0 +1,30 @@
+services:
+  database:
+    container_name: omiyt-log
+    image : postgres:17
+    environment:
+      POSTGRES_USER: omiyt_user
+      POSTGRES_PASSWORD: omiyt_pass
+      POSTGRES_DB: omiyt_logs
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: omiyt-pgadmin
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@omiyt.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - database
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  postgres_data:
+  pgadmin_data:

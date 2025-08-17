@@ -1,11 +1,11 @@
 services:
   database:
-    container_name: omiyt-log
+    container_name: omiyt
     image : postgres:17
     environment:
       POSTGRES_USER: omiyt_user
       POSTGRES_PASSWORD: omiyt_pass
-      POSTGRES_DB: omiyt_logs
+      POSTGRES_DB: omiyt
     ports:
       - "5432:5432"
     volumes:
